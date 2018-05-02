@@ -6,7 +6,7 @@ CONFIGFOLDER='/root/.gincoincore'
 COIN_DAEMON='gincoind'
 COIN_CLI='gincoin-cli'
 COIN_PATH='/usr/local/bin/'
-COIN_REPO='https://github.com/gincoin-dev/gincoin-core/releases/download/1.0.2.0/gincoin-binaries-linux-64bit.tar.gz'
+COIN_REPO='https://github.com/gincoin-dev/gincoin-core/releases/download/1.1.0.0/gincoincore-1.1.0-linux-64bit.tar.gz'
 COIN_NAME='Gincoin'
 COIN_PORT=10111
 RPC_PORT=10211
@@ -21,7 +21,7 @@ NC='\033[0m'
 
 
 function compile_node() {
-  echo -e "Prepare to download $COIN_NAME"
+  echo -e "Preparing to download $COIN_NAME"
   cd $TMP_FOLDER
   wget -q $COIN_REPO
   compile_error
@@ -190,7 +190,7 @@ fi
 }
 
 function prepare_system() {
-echo -e "Prepare the system to install ${GREEN}$COIN_NAME${NC} master node."
+echo -e "Preparing the system to install ${GREEN}$COIN_NAME${NC} master node."
 apt-get update >/dev/null 2>&1
 DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null 2>&1
 DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y -qq upgrade >/dev/null 2>&1
