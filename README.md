@@ -1,5 +1,6 @@
 # GIN Coin
-Shell script to install a [GIN Coin Masternode](https://gincoin.io) on a Linux server running Ubuntu 14.04 or 16.04. Use it on your own risk.
+Shell script to install a [GIN Coin Masternode](https://gincoin.io) on a Linux server running Ubuntu 16.04. Use it on your own risk.  
+This script will install **GIN 1.1.0.0**
 
 ***
 ## Installation:
@@ -34,6 +35,19 @@ Alias Address Privkey TxHash Output_index
 12. Open **Debug Console** and type:
 ```
 startmasternode "alias" "0" "MN1"
+```
+***
+
+## Masternode update:
+In order to update your GIN Masternode to version 1.1.0.0, run the following commands as root:
+```
+cd /tmp
+wget https://github.com/gincoin-dev/gincoin-core/releases/download/1.1.0.0/gincoin-binaries-linux-64bit.tar.gz
+tar xvzf gincoin-binaries-linux-64bit.tar.gz --strip 1
+systemctl stop Gincoin
+cp gincoin-cli gincoind /usr/local/bin
+systemctl start Gincoin
+rm -r gincoin*
 ```
 ***
 
