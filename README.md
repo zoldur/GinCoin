@@ -1,11 +1,11 @@
 # GIN Coin
-Shell script to install a [GIN Coin Masternode](https://gincoin.io) on a Linux server running Ubuntu 16.04. Use it on your own risk.  
-This script will install **GIN 1.1.0.0**
+Shell script to install a [GIN Coin Masternode](https://gincoin.io) on a Linux server running Ubuntu 16.04. Use it on your own risk.
+This script will install **GIN 1.2.0.0**
 
 ***
 ## Installation:
 ```
-wget -q https://raw.githubusercontent.com/zoldur/GinCoin/master/gin_install.sh
+wget -N https://raw.githubusercontent.com/zoldur/GinCoin/master/gin_install.sh
 bash gin_install.sh
 ```
 ***
@@ -34,21 +34,12 @@ Alias Address Privkey TxHash Output_index
 11. Click **Update status** to see your node. If it is not shown, close the wallet and start it again. Make sure the wallet is unlocked.
 12. Open **Debug Console** and type:
 ```
-startmasternode "alias" "0" "MN1"
+startmasternode "alias" "mn1" "mn1"
 ```
 ***
 
 ## Masternode update:
-In order to update your GIN Masternode to version 1.1.0.0, run the following commands as root:
-```
-cd /tmp
-wget https://github.com/gincoin-dev/gincoin-core/releases/download/1.1.0.0/gincoin-binaries-linux-64bit.tar.gz
-tar xvzf gincoin-binaries-linux-64bit.tar.gz --strip 1
-systemctl stop Gincoin
-cp gincoin-cli gincoind /usr/local/bin
-systemctl start Gincoin
-rm -r gincoin*
-```
+If you are running an old Gin version, simply running the installer will update you to the latest version.
 ***
 
 ## Usage:
@@ -70,12 +61,12 @@ systemctl is-enabled Gincoin #To check whetether Gincoin service is enabled on b
 
 ***
 
-## Donations:  
+## Donations:
 
-Any donation is highly appreciated.  
+Any donation is highly appreciated.
 
-**GIN**: GbPXbAnBHfjR63uyvMsV2dK6ZhxGoSxyvv  
-**BTC**: 3MQLEcHXVvxpmwbB811qiC1c6g21ZKa7Jh  
-**ETH**: 0x39d10fe57611c564abc255ffd7e984dc97e9bd6d  
+**GIN**: GbPXbAnBHfjR63uyvMsV2dK6ZhxGoSxyvv
+**BTC**: 3MQLEcHXVvxpmwbB811qiC1c6g21ZKa7Jh
+**ETH**: 0x39d10fe57611c564abc255ffd7e984dc97e9bd6d
 **LTC**: LNZpK4rCd1JVSB3rGKTAnTkudV9So9zexB
 

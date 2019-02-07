@@ -6,8 +6,9 @@ CONFIGFOLDER='/root/.gincoincore'
 COIN_DAEMON='gincoind'
 COIN_CLI='gincoin-cli'
 COIN_PATH='/usr/local/bin/'
-COIN_REPO='https://github.com/gincoin-dev/gincoin-core/releases/download/1.1.0.0/gincoin-binaries-linux-64bit.tar.gz'
+COIN_REPO='https://github.com/GIN-coin/gincoin-core/releases/download/v1.2.0.0/gincoin-binaries-1.2.0-linux-64bit.tar.gz'
 COIN_NAME='Gincoin'
+LATEST_VERSION=1020000
 COIN_PORT=10111
 RPC_PORT=10211
 
@@ -20,6 +21,35 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 
 
+function update_node() {
+  echo -e "Checking if ${RED}$COIN_NAME${NC} is already installed and running the lastest version."
+  systemctl daemon-reload
+  sleep 3
+  systemctl start $COIN_NAME.service >/dev/null 2>&1
+  apt -y install jq >/dev/null 2>&1
+  VERSION=$($COIN_PATH$COIN_CLI getinfo 2>/dev/null| jq .version)
+  if [[ "$VERSION" -eq "$LATEST_VERSION" ]]
+  then
+    echo -e "${RED}$COIN_NAME${NC} is already installed and running the lastest version."
+    exit 0
+  elif [[ -z "$VERSION" ]]
+  then
+    echo "No $COIN_NAME installation found. Resuming normal installation"
+  elif [[ "$VERSION" -ne "$LATEST_VERSION" ]]
+  then
+    clear
+    echo "You are running an older version. Updating..."
+    systemctl stop $COIN_NAME.service >/dev/null 2>&1
+    $COIN_PATH$COIN_CLI stop >/dev/null 2>&1
+    sleep 10 >/dev/null 2>&1
+    rm $COIN_PATH$COIN_DAEMON $COIN_PATH$COIN_CLI >/dev/null 2>&1
+    compile_node
+    configure_systemd
+    echo -e "${RED}$COIN_NAME${NC} updated to the latest version!"
+    exit 0
+  fi
+}
+
 function compile_node() {
   echo -e "Preparing to download $COIN_NAME"
   cd $TMP_FOLDER
@@ -30,7 +60,6 @@ function compile_node() {
   compile_error
   cp $COIN_DAEMON $COIN_CLI $COIN_PATH
   compile_error
-  strip $COIN_PATH$COIN_DAEMON $COIN_PATH$COIN_CLI
   cd -
   rm -rf $TMP_FOLDER >/dev/null 2>&1
   clear
@@ -183,10 +212,6 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-if [ -n "$(pidof $COIN_DAEMON)" ] || [ -e "$COIN_DAEMOM" ] ; then
-  echo -e "${RED}$COIN_NAME is already installed.${NC}"
-  exit 1
-fi
 }
 
 function prepare_system() {
@@ -246,8 +271,8 @@ function setup_node() {
 
 ##### Main #####
 clear
-
 checks
+update_node
 prepare_system
 compile_node
 setup_node
