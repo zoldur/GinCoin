@@ -65,8 +65,8 @@ systemctl is-enabled Gincoin #To check whetether Gincoin service is enabled on b
 
 Any donation is highly appreciated.
 
-**GIN**: GbPXbAnBHfjR63uyvMsV2dK6ZhxGoSxyvv
-**BTC**: 3MQLEcHXVvxpmwbB811qiC1c6g21ZKa7Jh
-**ETH**: 0x39d10fe57611c564abc255ffd7e984dc97e9bd6d
+**GIN**: GbPXbAnBHfjR63uyvMsV2dK6ZhxGoSxyvv  
+**BTC**: 3MQLEcHXVvxpmwbB811qiC1c6g21ZKa7Jh  
+**ETH**: 0x39d10fe57611c564abc255ffd7e984dc97e9bd6d  
 **LTC**: LNZpK4rCd1JVSB3rGKTAnTkudV9So9zexB
 
