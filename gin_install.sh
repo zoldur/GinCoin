@@ -6,9 +6,9 @@ CONFIGFOLDER='/root/.gincoincore'
 COIN_DAEMON='gincoind'
 COIN_CLI='gincoin-cli'
 COIN_PATH='/usr/local/bin/'
-COIN_REPO='https://github.com/GIN-coin/gincoin-core/releases/download/v1.2.1.0/gincoin-binaries-1.2.1-linux-64bit.tar.gz'
+COIN_REPO='https://github.com/GIN-coin/gincoin-core/releases/download/v1.3.0.0/gincoin-binaries-1.3.0-linux-64bit.tar.gz'
 COIN_NAME='Gincoin'
-LATEST_VERSION=1020100
+LATEST_VERSION=1030000
 COIN_PORT=10111
 RPC_PORT=10211
 
